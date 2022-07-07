@@ -1,24 +1,46 @@
-// пожкдключаем экспресс
 const express = require('express')
-// пожкдключаем модуль пути
 const path = require('path')
+const {v4} = require('uuid')
 const app = express()
 
-
-const CONTACTS = [
-  {id: 1, name: "NewName", value: "7-908-038-55-22", marked: false}
+let CONTACTS = [
+  {id: v4(), name: 'Karina Kiseleva', value: '+7-990-100-10-10', marked: false}
 ]
+
+app.use(express.json())
+
 // GET
-app.get('/api/contacts', (req,res) => {
-  res.status(200).json(CONTACTS)
+app.get('/api/contacts', (req, res) => {
+  setTimeout(() => {
+    res.status(200).json(CONTACTS)
+  }, 1000)
 })
 
-// ----> Запросы должны отрабатывать посденими поэтому находятся в низу
- // статика нужна для того, что бы найти пути завязаные под html
+// POST
+app.post('/api/contacts', (req, res) => {
+  const contact = {...req.body, id: v4(), marked: false}
+  CONTACTS.push(contact)
+  res.status(201).json(contact)
+})
+
+// DELETE
+app.delete('/api/contacts/:id', (req, res) => {
+  CONTACTS = CONTACTS.filter(c => c.id !== req.params.id)
+  res.status(200).json({message: 'Контакт был удален'})
+})
+
+// PUT
+app.put('/api/contacts/:id', (req, res) => {
+  const idx = CONTACTS.findIndex(c => c.id === req.params.id)
+  CONTACTS[idx] = req.body
+  res.json(CONTACTS[idx])
+})
+
+
 app.use(express.static(path.resolve(__dirname, 'client')))
- // '*' смотрим за всеми гет запросами (аргументы запрос и разрешение)
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'index.html'))
 })
 
-app.listen(8080, () => console.log('Server has been started on port 3000...'))
+app.listen(3000, () => console.log('Server has been started on port 3000...'))
