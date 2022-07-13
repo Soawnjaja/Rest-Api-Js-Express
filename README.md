@@ -40,5 +40,6 @@ WEB IS FUN
 
 contact :https://www.instagram.com/amwishinskiy
 ## Prewiev
-![StarWars](https://user-images.githubusercontent.com/11227748/154944613-8193e857-3ab8-49ab-8b9e-f051c03d5ebf.jpg)
+![tel](https://user-images.githubusercontent.com/11227748/178831309-669505c1-bf1f-478a-a670-bdef8c6dfc51.jpg)
+
 
