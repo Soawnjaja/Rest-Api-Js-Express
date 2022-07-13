@@ -3,7 +3,7 @@
 My first project what i like
 
 ## Summary
-One page screen StarWars Premier (love Starwars), with animated text and slider, button for view trailer inside site.
+One page app. telbook, can save num and name, pin it, backend is massive) not server.
 
 ### Installing
 
